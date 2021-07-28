@@ -15,13 +15,13 @@ module.exports = {
   },
   title: 'Tohsaka888的个人博客',
   tagline: 'Dinosaurs are cool',
-  url: 'https://your-docusaurus-test-site.com',
-  baseUrl: '/',
+  url: 'https://tohsaka888.github.io',
+  baseUrl: '/docusauras-blog-client/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'tohsaka888', // Usually your GitHub org/user name.
-  projectName: 'docusaurusBlog', // Usually your repo name.
+  projectName: 'docusauras-blog-client', // Usually your repo name.
   themeConfig: {
     navbar: {
       title: 'Tohsaka888的个人博客',

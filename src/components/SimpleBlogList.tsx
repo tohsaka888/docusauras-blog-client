@@ -1,24 +1,32 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
 import { Tag, Typography, Button } from "antd";
 import Zoom from "../springs/Zoom";
+import TrailsMove from "../springs/TrailsMove";
+import { trailContext, fadeContext } from "../context/contexts";
 
 export default function SimpleBlogList(): JSX.Element {
   const arr = [1, 2, 3, 4, 5];
   const [isZoom, setIsZoom] = useState<number>(-1);
+  // const { index } = useContext(trailContext);
+  const { height } = useContext(fadeContext);
+  const cardRef = useRef<HTMLDivElement>();
+  useEffect(() => {
+    console.log(cardRef.current.index);
+  });
   return (
     <div>
       <div className="simple-header">
         文档列表
         <div className="buttons">切换菜单</div>
       </div>
-      {arr.map((item, index) => {
-        return (
-          <Zoom isZoom={isZoom === index} key={index}>
+      <TrailsMove amount={arr.length} isShow={height === -1}>
+        <div ref={cardRef}>
+          <Zoom isZoom={false}>
             <div
               className="article-card"
               onMouseOver={() => {
-                setIsZoom(index);
+                setIsZoom(cardRef.current.index);
               }}
               onMouseLeave={() => {
                 setIsZoom(-1);
@@ -61,8 +69,8 @@ export default function SimpleBlogList(): JSX.Element {
               </Typography>
             </div>
           </Zoom>
-        );
-      })}
+        </div>
+      </TrailsMove>
     </div>
   );
 }

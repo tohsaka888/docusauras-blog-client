@@ -3,13 +3,12 @@ import clsx from "clsx";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import SimpleBlogList from '../components/SimpleBlogList'
+import SimpleBlogList from "../components/SimpleBlogList";
 import HomepageFeatures from "../components/HomepageFeatures";
 import FontFade from "../springs/FontFade";
 import NormalFade from "../springs/NormalFade";
 import BackgroundChange from "../springs/BackgroundChange";
-// import img1 from '../assets/images/1.jpg'
-// import img2 from '../assets/images/2.jpg'
+import TransformLeft from "../springs/TransformLeft";
 import { fadeContext } from "../context/contexts";
 import useScreenHeight from "../hooks/useScreenHeight";
 import "../css/homePage.css";
@@ -19,7 +18,7 @@ const HeaderText = ({ siteConfig }) => (
     <h1 className="hero__title">{siteConfig.title}</h1>
     <p
       className="hero__subtitle"
-      style={{ fontSize: "2.5rem", marginBottom: "4vh", fontWeight: 'bold' }}
+      style={{ fontSize: "2.5rem", marginBottom: "4vh", fontWeight: "bold" }}
     >
       技术宅<span className="cancel_text">拯救即将</span>
       <span>毁灭</span>
@@ -53,6 +52,7 @@ export default function Home() {
   const [fade, setFade] = useState<boolean>(false);
   const introRef = useRef<HTMLDivElement>();
   const height: Number = useScreenHeight(introRef);
+  console.log(height);
   return (
     <Layout
       title={`Hello from ${siteConfig.title}`}
@@ -64,8 +64,12 @@ export default function Home() {
         <HomepageHeader />
         <div ref={introRef}>
           <NormalFade>
-            <main>
-              <HomepageFeatures />
+            <main style={{width: "100%", overflowY: "hidden"}}>
+              <TransformLeft isShow={height !== -1}>
+                <div>
+                  <HomepageFeatures />
+                </div>
+              </TransformLeft>
             </main>
           </NormalFade>
         </div>

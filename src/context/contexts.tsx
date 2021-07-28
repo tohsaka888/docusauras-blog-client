@@ -1,11 +1,20 @@
-import React from 'react'
+import React from "react";
 
 type fade = {
   fade: boolean;
   setFade: any;
   height: Number;
-}
+};
 
-const fadeContext = React.createContext<fade>({fade: false, setFade: null, height: 0});
+type trails = {
+  index: number;
+};
 
-export {fadeContext}
+const fadeContext = React.createContext<fade>({
+  fade: false,
+  setFade: null,
+  height: -1,
+});
+const trailContext = React.createContext<trails>({ index: 0 });
+
+export { fadeContext, trailContext };

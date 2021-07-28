@@ -9,7 +9,7 @@ import {
 export default function useScreenHeight(
   element: MutableRefObject<HTMLDivElement | HTMLElement> | RefObject<HTMLDivElement | HTMLElement>
 ): Number {
-  const [height, setHeight] = useState<Number>(0);
+  const [height, setHeight] = useState<Number>(-1);
   const scrollFunc = useCallback(() => {
     let height = element.current
       ? element.current.getBoundingClientRect().top

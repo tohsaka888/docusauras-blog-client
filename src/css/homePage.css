@@ -127,4 +127,9 @@ html[data-theme="dark"] .article-card {
 html[data-theme="dark"] body{
   color: #fff!important;
   background-color: transparent!important;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
