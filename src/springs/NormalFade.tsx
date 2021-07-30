@@ -8,22 +8,11 @@ type Props = {
 };
 
 export default function NormalFade({ children }: Props): JSX.Element {
-  const [fontStyle, setFontStyle] = useSpring(() => {
-    opacity: 0;
-  });
   const context = useContext(fadeContext);
-  useEffect(() => {
-    window.addEventListener("scroll", changeStyle);
-    return () => {
-      window.removeEventListener("scroll", changeStyle);
-    };
+  const fontStyle = useSpring({
+    from: {opacity: 0},
+    to: {opacity: context.height === -1 ? 0 : 1}
   });
-  const changeStyle = useCallback(() => {
-    setFontStyle.start({
-      opacity: context.height === -1 ? 0 : 1,
-      config: config.slow,
-      delay: 500,
-    });
-  }, [context.height === -1]);
+  
   return <animated.div style={fontStyle}>{children}</animated.div>;
 }

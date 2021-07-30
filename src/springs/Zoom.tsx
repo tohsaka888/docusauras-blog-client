@@ -11,7 +11,7 @@ export default function Zoom({ children, isZoom }: Props): JSX.Element {
     from: {
       zoom: 1,
     },
-    to: { zoom: isZoom ? 1.03 : 1 },
+    to: { zoom: isZoom ? 1.04 : 1 },
     config: config.stiff
   });
   return <animated.div style={styles}>{children}</animated.div>;

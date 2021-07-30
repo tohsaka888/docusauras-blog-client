@@ -19,7 +19,6 @@ export default function FontFade({ children }: Props): JSX.Element {
     };
   });
   const changeStyle = useCallback(() => {
-    console.log(context.height)
     setFontStyle.start({
       opacity: context.height !== -1 ? 0 : 1,
       config: {duration: 700},

@@ -1,4 +1,10 @@
-import React, { useState, useRef, useContext, useEffect } from "react";
+import React, {
+  useState,
+  useRef,
+  useContext,
+  useEffect,
+  HtmlHTMLAttributes,
+} from "react";
 import clsx from "clsx";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
@@ -51,7 +57,9 @@ export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   const [fade, setFade] = useState<boolean>(false);
   const introRef = useRef<HTMLDivElement>();
+  const headerRef = useRef<HTMLDivElement>();
   const height: Number = useScreenHeight(introRef);
+  const headerHeight: Number = useScreenHeight(headerRef);
   console.log(height);
   return (
     <Layout
@@ -59,23 +67,23 @@ export default function Home() {
       description="Description will go into a meta tag in <head />"
     >
       <div className="bak1"></div>
-      <fadeContext.Provider value={{ fade, setFade, height }}>
+      <fadeContext.Provider value={{ fade, setFade, height, headerHeight }}>
         <BackgroundChange />
-        <HomepageHeader />
+        <div ref={headerRef}>
+          <HomepageHeader />
+        </div>
         <div ref={introRef}>
-          <NormalFade>
-            <main style={{width: "100%", overflowY: "hidden"}}>
+          <main style={{ width: "100%", overflowY: "hidden" }}>
+            <NormalFade>
               <TransformLeft isShow={height !== -1}>
                 <div>
                   <HomepageFeatures />
                 </div>
               </TransformLeft>
-            </main>
-          </NormalFade>
+            </NormalFade>
+          </main>
         </div>
-        <div>
-          <SimpleBlogList />
-        </div>
+        <SimpleBlogList />
       </fadeContext.Provider>
     </Layout>
   );

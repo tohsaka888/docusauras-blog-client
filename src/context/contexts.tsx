@@ -4,6 +4,7 @@ type fade = {
   fade: boolean;
   setFade: any;
   height: Number;
+  headerHeight: Number
 };
 
 type trails = {
@@ -14,6 +15,7 @@ const fadeContext = React.createContext<fade>({
   fade: false,
   setFade: null,
   height: -1,
+  headerHeight: -1
 });
 const trailContext = React.createContext<trails>({ index: 0 });
 
