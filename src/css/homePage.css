@@ -101,6 +101,10 @@ html[data-theme="dark"] .article-card {
   box-shadow: 20px 20px 60px #253748,-20px -20px 60px #253748;
 }
 
+html[data-theme="dark"] .hero__title {
+  color: #fff;
+}
+
 .article-card {
   margin: 0 auto;
   width: 84vw;

@@ -1,11 +1,4 @@
-import React, {
-  useState,
-  useRef,
-  useContext,
-  useEffect,
-  HtmlHTMLAttributes,
-} from "react";
-import clsx from "clsx";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
@@ -18,6 +11,9 @@ import TransformLeft from "../springs/TransformLeft";
 import { fadeContext } from "../context/contexts";
 import useScreenHeight from "../hooks/useScreenHeight";
 import "../css/homePage.css";
+import { Checkbox, Form, Input, Modal, message } from "antd";
+import { login } from "../request/request";
+import { getLoginStatus } from "../request/request";
 
 const HeaderText = ({ siteConfig }) => (
   <div>
@@ -34,6 +30,32 @@ const HeaderText = ({ siteConfig }) => (
 );
 function HomepageHeader(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
+  const [visiable, setVisiable] = useState<boolean>(false);
+  const [form] = Form.useForm();
+  const [loginUser, setLoginUser] = useState<string>("");
+  const sendLoginRequest = useCallback(async () => {
+    const username: string = form.getFieldValue("username");
+    const password: string = form.getFieldValue("password");
+    const data = await login(username, password);
+    if (data.code === 200) {
+      if (data.message === "登陆成功") {
+        message.success(`${username},${data.message}~`);
+        sessionStorage.setItem("cookie", data.cookie);
+      } else {
+        message.error(`${data.message}`);
+      }
+    } else if (data.code === 300) {
+      message.error(`${data.error}`);
+    } else {
+      message.warning("网络错误");
+    }
+    setVisiable(false);
+  },[]);
+  useEffect(() => {
+    getLoginStatus().then((data) => {
+      setLoginUser(data.username)
+    })
+  })
   return (
     <FontFade>
       <div className="backgroundImg">
@@ -46,9 +68,59 @@ function HomepageHeader(): JSX.Element {
             >
               开始阅读文档
             </Link>
+            <div
+              onClick={() => !loginUser ? setVisiable(true) : message.success("检测已登录,正在跳转,请稍等~")}
+              className="button button--secondary button--lg"
+              style={{
+                background: "rgb(24, 144, 255)",
+                color: "#fff",
+                marginLeft: "2vw",
+              }}
+            >
+              {loginUser ? "撰写新文章" : "管理员登录"}
+            </div>
           </div>
         </div>
       </div>
+      <Modal
+        visible={visiable}
+        title="登陆"
+        okText={"登陆"}
+        cancelText={"取消"}
+        onCancel={() => setVisiable(false)}
+        onOk={sendLoginRequest}
+      >
+        <Form
+          form={form}
+          style={{ marginTop: "4vh" }}
+          name="login"
+          labelCol={{ span: 5 }}
+          wrapperCol={{ span: 16 }}
+          initialValues={{ remember: true }}
+        >
+          <Form.Item
+            label="用户名"
+            name="username"
+            rules={[{ required: true, message: "请输入用户名!" }]}
+          >
+            <Input placeholder="请输入用户名" />
+          </Form.Item>
+          <Form.Item
+            label="密码"
+            name="password"
+            rules={[{ required: true, message: "请输入密码!" }]}
+          >
+            <Input.Password placeholder="请输入密码" />
+          </Form.Item>
+          <Form.Item
+            name="remember"
+            valuePropName="checked"
+            wrapperCol={{ offset: 4, span: 16 }}
+          >
+            <Checkbox>记住密码</Checkbox>
+          </Form.Item>
+        </Form>
+      </Modal>
     </FontFade>
   );
 }
@@ -60,7 +132,6 @@ export default function Home() {
   const headerRef = useRef<HTMLDivElement>();
   const height: Number = useScreenHeight(introRef);
   const headerHeight: Number = useScreenHeight(headerRef);
-  console.log(height);
   return (
     <Layout
       title={`Hello from ${siteConfig.title}`}
