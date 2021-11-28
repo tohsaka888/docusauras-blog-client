@@ -139,6 +139,30 @@ html[data-theme="dark"] body {
   overflow-x: hidden;
 }
 
+html[data-theme="dark"] h1 {
+  color: white;
+}
+
+html[data-theme="dark"] h2 {
+  color: white;
+}
+
+html[data-theme="dark"] h3 {
+  color: white;
+}
+
+html[data-theme="dark"] h4 {
+  color: white;
+}
+
+html[data-theme="dark"] h5 {
+  color: white;
+}
+
+html[data-theme="dark"] h6 {
+  color: white;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
