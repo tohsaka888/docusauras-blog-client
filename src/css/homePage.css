@@ -8,15 +8,17 @@
 }
 
 .info {
-  /* margin-top: 10vh; */
+  margin-top: 10vh;
   width: 100%;
   height: 50vh;
   margin-bottom: 10vh;
-  padding-bottom: 10vh;
+  /* padding-bottom: 10vh; */
+  display: flex;
+  align-items: center;
 }
 
 .card {
-  background-color:rgba(255,255,255,0.5);
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .cancel_text {
@@ -24,7 +26,7 @@
 }
 
 html[data-theme="dark"] .bak1 {
-  background-image: url('../assets/images/bak3.jpg');
+  background-image: url("../assets/images/bak3.jpg");
   width: 100%;
   height: 96vh;
   background-size: cover;
@@ -55,7 +57,7 @@ html[data-theme="dark"] .cancel_text {
 
 html[data-theme="dark"] .card {
   /* background-color:rgba(0,0,0,0.5); */
-  box-shadow: 20px 20px 60px #253748,-20px -20px 60px #253748;
+  box-shadow: 20px 20px 60px #253748, -20px -20px 60px #253748;
 }
 
 .simple-header {
@@ -74,7 +76,7 @@ html[data-theme="dark"] .card {
 }
 
 .buttons {
-  font-size: 1rem!important;
+  font-size: 1rem !important;
   text-shadow: none;
   color: #fff;
   text-align: right;
@@ -94,11 +96,11 @@ html[data-theme="dark"] .article-card {
   margin: 0 auto;
   width: 84vw;
   height: 40vh;
-  background-color:rgba(255,255,255,0.5);
+  background-color: rgba(255, 255, 255, 0.5);
   border-radius: 20px;
   padding: 1vh 2vw;
   margin-bottom: 5vh;
-  box-shadow: 20px 20px 60px #253748,-20px -20px 60px #253748;
+  box-shadow: 20px 20px 60px #253748, -20px -20px 60px #253748;
 }
 
 html[data-theme="dark"] .hero__title {
@@ -109,11 +111,11 @@ html[data-theme="dark"] .hero__title {
   margin: 0 auto;
   width: 84vw;
   height: 40vh;
-  background-color:rgba(255,255,255,0.3);
+  background-color: rgba(255, 255, 255, 0.3);
   border-radius: 20px;
   padding: 1vh 2vw;
   margin-bottom: 5vh;
-  box-shadow: 10px 10px 60px #f9f9f9,-15px -15px 60px rgb(146, 146, 146);
+  box-shadow: 10px 10px 60px #f9f9f9, -15px -15px 60px rgb(146, 146, 146);
 }
 
 .article-header {
@@ -121,7 +123,7 @@ html[data-theme="dark"] .hero__title {
   color: #000;
   font-weight: bold;
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   align-content: center;
   align-items: center;
 }
@@ -131,9 +133,9 @@ html[data-theme="dark"] .hero__title {
   font-size: 1.2rem;
 }
 
-html[data-theme="dark"] body{
-  color: #fff!important;
-  background-color: transparent!important;
+html[data-theme="dark"] body {
+  color: #fff !important;
+  background-color: transparent !important;
   overflow-x: hidden;
 }
 

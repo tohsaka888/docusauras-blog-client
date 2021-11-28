@@ -9,8 +9,8 @@ const slides = [img1, img2];
 
 export default function BackgroundChange() {
   const context = useContext(fadeContext);
-  const transitions = useTransition((context.height === -1 ? 1 : 0), {
-    key: context.height === -1 ? 1 : 0,
+  const transitions = useTransition((context.isShowHeader ? 1 : 0), {
+    key: context.isShowHeader ? 1 : 0,
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },

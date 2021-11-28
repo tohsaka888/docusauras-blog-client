@@ -15,8 +15,8 @@ export default function TransformLeft({
     to: isShow
       ? { opacity: 1, transform: "translate3d(0,0,0)" }
       : { opacity: 0, transform: "translate3d(100%,0,0)" },
-    delay: 500,
     config: config.gentle,
+    delay: 200,
   });
   return <animated.div style={transition}>{children}</animated.div>;
 }

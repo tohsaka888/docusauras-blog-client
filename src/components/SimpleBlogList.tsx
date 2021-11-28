@@ -64,7 +64,7 @@ const Card = ({ setIsZoom, isZoom, index = 0 }): JSX.Element => {
 export default function SimpleBlogList(): JSX.Element {
   const arr = [1, 2, 3, 4, 5];
   const [isZoom, setIsZoom] = useState<number>(-1);
-  const { height, headerHeight } = useContext(fadeContext);
+  const { isShowCard } = useContext(fadeContext);
   return (
     <div style={{ paddingTop: "20vh" }}>
       <div className="simple-header">
@@ -73,9 +73,9 @@ export default function SimpleBlogList(): JSX.Element {
       </div>
       <TrailsMove
         amount={arr.length}
-        isShow={height === -1 && headerHeight === -1}
+        isShow={isShowCard}
       >
-        <Card isZoom={isZoom} setIsZoom={setIsZoom} index={0}></Card>
+        <Card isZoom={isZoom} setIsZoom={setIsZoom} index={0} />
       </TrailsMove>
     </div>
   );

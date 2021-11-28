@@ -20,9 +20,9 @@ export default function FontFade({ children }: Props): JSX.Element {
   });
   const changeStyle = useCallback(() => {
     setFontStyle.start({
-      opacity: context.height !== -1 ? 0 : 1,
+      opacity: context.isShowHeader ? 1 : 0,
       config: {duration: 700},
     });
-  }, [context.height === -1]);
+  }, [context.isShowHeader]);
   return <animated.div style={fontStyle}>{children}</animated.div>;
 }

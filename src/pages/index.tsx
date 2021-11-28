@@ -9,7 +9,7 @@ import NormalFade from "../springs/NormalFade";
 import BackgroundChange from "../springs/BackgroundChange";
 import TransformLeft from "../springs/TransformLeft";
 import { fadeContext } from "../context/contexts";
-import useScreenHeight from "../hooks/useScreenHeight";
+import useIsThroughScreen from "../hooks/useIsThroughScreen";
 import "../css/homePage.css";
 import { Checkbox, Form, Input, Modal, message } from "antd";
 import { login } from "../request/request";
@@ -50,12 +50,12 @@ function HomepageHeader(): JSX.Element {
       message.warning("网络错误");
     }
     setVisiable(false);
-  },[]);
+  }, []);
   useEffect(() => {
     getLoginStatus().then((data) => {
-      setLoginUser(data.username)
-    })
-  })
+      setLoginUser(data.username);
+    });
+  });
   return (
     <FontFade>
       <div className="backgroundImg">
@@ -69,7 +69,11 @@ function HomepageHeader(): JSX.Element {
               开始阅读文档
             </Link>
             <div
-              onClick={() => !loginUser ? setVisiable(true) : message.success("检测已登录,正在跳转,请稍等~")}
+              onClick={() =>
+                !loginUser
+                  ? setVisiable(true)
+                  : message.success("检测已登录,正在跳转,请稍等~")
+              }
               className="button button--secondary button--lg"
               style={{
                 background: "rgb(24, 144, 255)",
@@ -130,15 +134,19 @@ export default function Home() {
   const [fade, setFade] = useState<boolean>(false);
   const introRef = useRef<HTMLDivElement>();
   const headerRef = useRef<HTMLDivElement>();
-  const height: Number = useScreenHeight(introRef);
-  const headerHeight: Number = useScreenHeight(headerRef);
+  const cardRef = useRef<HTMLDivElement>();
+  const isShowIntro: boolean = useIsThroughScreen(introRef);
+  const isShowHeader: boolean = useIsThroughScreen(headerRef);
+  const isShowCard: boolean = useIsThroughScreen(cardRef);
   return (
     <Layout
       title={`Hello from ${siteConfig.title}`}
       description="Description will go into a meta tag in <head />"
     >
       <div className="bak1"></div>
-      <fadeContext.Provider value={{ fade, setFade, height, headerHeight }}>
+      <fadeContext.Provider
+        value={{ fade, setFade, isShowCard, isShowHeader, isShowIntro }}
+      >
         <BackgroundChange />
         <div ref={headerRef}>
           <HomepageHeader />
@@ -146,7 +154,7 @@ export default function Home() {
         <div ref={introRef}>
           <main style={{ width: "100%", overflowY: "hidden" }}>
             <NormalFade>
-              <TransformLeft isShow={height !== -1}>
+              <TransformLeft isShow={isShowIntro}>
                 <div>
                   <HomepageFeatures />
                 </div>
@@ -154,7 +162,9 @@ export default function Home() {
             </NormalFade>
           </main>
         </div>
-        <SimpleBlogList />
+        <div ref={cardRef}>
+          <SimpleBlogList />
+        </div>
       </fadeContext.Provider>
     </Layout>
   );

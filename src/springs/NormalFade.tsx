@@ -10,9 +10,10 @@ type Props = {
 export default function NormalFade({ children }: Props): JSX.Element {
   const context = useContext(fadeContext);
   const fontStyle = useSpring({
-    from: {opacity: 0},
-    to: {opacity: context.height === -1 ? 0 : 1}
+    from: { opacity: 0 },
+    to: { opacity: context.isShowIntro ? 1 : 0 },
+    delay: 500,
   });
-  
+
   return <animated.div style={fontStyle}>{children}</animated.div>;
 }
