@@ -1,9 +1,10 @@
 import { MutableRefObject, useEffect, useState } from "react";
 
 export default function useIsThroughScreen(
-  elementRef: MutableRefObject<HTMLDivElement | undefined>
+  elementRef: MutableRefObject<HTMLDivElement | undefined>,
+  initialValue: boolean
 ): boolean {
-  const [isInside, setIsInside] = useState<boolean>(true);
+  const [isInside, setIsInside] = useState<boolean>(initialValue);
   useEffect(() => {
     const scrollEvent = () => {
       // 距离屏幕顶部的距离

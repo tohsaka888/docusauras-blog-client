@@ -19,7 +19,7 @@ export default function TrailsMove({
       ? { transform: "translate3d(0,0,0)" }
       : { transform: "translate3d(100%,0,0)" },
     config: config.wobbly,
-    delay: isShow ? 500 : 0,
+    delay: isShow ? 1000 : 0,
   });
   return (
     <div>

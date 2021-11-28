@@ -14,6 +14,7 @@ import "../css/homePage.css";
 import { Checkbox, Form, Input, Modal, message } from "antd";
 import { login } from "../request/request";
 import { getLoginStatus } from "../request/request";
+import "./index.module.css";
 
 const HeaderText = ({ siteConfig }) => (
   <div>
@@ -135,9 +136,9 @@ export default function Home() {
   const introRef = useRef<HTMLDivElement>();
   const headerRef = useRef<HTMLDivElement>();
   const cardRef = useRef<HTMLDivElement>();
-  const isShowIntro: boolean = useIsThroughScreen(introRef);
-  const isShowHeader: boolean = useIsThroughScreen(headerRef);
-  const isShowCard: boolean = useIsThroughScreen(cardRef);
+  const isShowIntro: boolean = useIsThroughScreen(introRef, true);
+  const isShowHeader: boolean = useIsThroughScreen(headerRef, false);
+  const isShowCard: boolean = useIsThroughScreen(cardRef, false);
   return (
     <Layout
       title={`Hello from ${siteConfig.title}`}

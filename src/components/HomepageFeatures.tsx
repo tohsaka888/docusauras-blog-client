@@ -26,9 +26,7 @@ const FeatureList = [
     title: "网站相关",
     Svg: require("../../static/img/undraw_docusaurus_react.svg").default,
     description: (
-      <>
-        本站点基于docusaurus，前端使用react+tsx，后端采用deno+mongodb，开源，github地址：https://github.com/tohsaka888
-      </>
+      <>本站点基于docusaurus，前端使用react+tsx，后端采用deno+mongodb.项目地址:https://github.com/tohsaka888/docusauras-blog-client</>
     ),
   },
 ];
@@ -40,8 +38,10 @@ function Feature({ Svg, title, description }) {
         <Svg className={styles.featureSvg} alt={title} />
       </div>
       <div className="text--center padding-horiz--md">
-        <h3 style={{ fontWeight: "bold" }}>{title}</h3>
-        <p style={{ fontWeight: "bold" }}>{description}</p>
+        <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>{title}</div>
+        <p style={{ fontWeight: "bold", textAlign: "left", fontSize: "1rem" }}>
+          {description}
+        </p>
       </div>
     </div>
   );
