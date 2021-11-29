@@ -66,7 +66,7 @@ export default function SimpleBlogList(): JSX.Element {
   const [isZoom, setIsZoom] = useState<number>(-1);
   const { isShowCard } = useContext(fadeContext);
   return (
-    <div style={{ paddingTop: "20vh" }}>
+    <div style={{ marginTop: "50vh" }}>
       <div className="simple-header">
         文档列表
         <div className="buttons">切换菜单</div>

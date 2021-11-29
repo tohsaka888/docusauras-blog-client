@@ -1,0 +1,15 @@
+.homePageHeader {
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: bold;
+  background: transparent;
+  padding: 20vh 0;
+}
+
+.header-text {
+  font-size: 2rem;
+}
