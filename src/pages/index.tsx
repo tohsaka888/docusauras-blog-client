@@ -15,6 +15,8 @@ import { Checkbox, Form, Input, Modal, message } from "antd";
 import { login } from "../request/request";
 import { getLoginStatus } from "../request/request";
 import "./index.module.css";
+import useIsMobile from "../hooks/useIsMobile";
+import HomePageHeaderMobile from "./HomePageHeaderMobile";
 
 const HeaderText = ({ siteConfig }) => (
   <div>
@@ -139,6 +141,7 @@ export default function Home() {
   const isShowIntro: boolean = useIsThroughScreen(introRef, true);
   const isShowHeader: boolean = useIsThroughScreen(headerRef, false);
   const isShowCard: boolean = useIsThroughScreen(cardRef, false);
+  const isMobile: boolean = useIsMobile();
   return (
     <Layout
       title={`Hello from ${siteConfig.title}`}
@@ -149,10 +152,10 @@ export default function Home() {
         value={{ fade, setFade, isShowCard, isShowHeader, isShowIntro }}
       >
         <BackgroundChange />
-        <div ref={headerRef}>
-          <HomepageHeader />
+        <div ref={headerRef} style={{ height: "100vh" }}>
+          {isMobile ? <HomePageHeaderMobile /> : <HomepageHeader />}
         </div>
-        <div ref={introRef}>
+        <div ref={introRef} style={{height: "max-content"}}>
           <main style={{ width: "100%", overflowY: "hidden" }}>
             <NormalFade>
               <TransformLeft isShow={isShowIntro}>
