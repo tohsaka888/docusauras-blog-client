@@ -13,7 +13,7 @@ export default function TransformLeft({
   const transition = useSpring({
     from: { opacity: 0, transform: "translate3d(100%,0,0)" },
     to: isShow
-      ? { opacity: 1, transform: "translate3d(0,0,0)" }
+      ? { opacity: 1, transform: "translate3d(0%,0,0)" }
       : { opacity: 0, transform: "translate3d(100%,0,0)" },
     config: config.gentle,
     delay: 300,
